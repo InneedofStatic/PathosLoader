@@ -25,7 +25,7 @@ end
 local Folder = not isfolder("Pathos") and makefolder("Pathos")
 local KeyName = (function()
 	for _, Name in Games do
-        local r = string.match(Name:lower(), GameName:lower())
+        local r = string.match(GameName:lower(), Name:lower())
 
         if r then
             return r
