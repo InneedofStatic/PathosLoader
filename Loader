@@ -9,19 +9,37 @@ if PathosLoader then
 	PathosLoader:Destroy()
 end
 
+local Games = {
+	"Fight In A School"
+}
+
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
+
+local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 
 local API = loadstring(game:HttpGet("https://sdkAPI-public.luarmor.net/library.lua"))() do
 	API.script_id = "30b156d1b5322e48d977bdb219bf4053"
 end
 
-if isfolder("Pathos") then
-	local KeyFile = "Pathos/Key.txt"
-	script_key = script_key or ( isfile(KeyFile) and readfile(KeyFile) ) or nil
-else
-	makefolder("Pathos")
+local Folder = not isfolder("Pathos") and makefolder("Pathos")
+local KeyName = (function()
+	for _, Name in Games do
+        local r = string.match(Name:lower(), GameName:lower())
+
+        if r then
+            return r
+        end
+	end
+end)()
+
+if not KeyName then
+	error("Game not supported by Pathos.")
 end
+
+makefolder("Pathos/Keys")
+local KeyFile = "Pathos/Keys/" .. KeyName
+script_key = script_key or ( isfile(KeyFile) and readfile(KeyFile) ) or nil
 
 local DARK_RED_ACCENT = Color3.fromRGB(120, 20, 20)
 
@@ -748,7 +766,7 @@ local function CheckKey(Key)
 	local status = API.check_key(script_key or Key) do
 		if status.code == "KEY_VALID" then
 			script_key = script_key or Key;
-			writefile("PathosLoader/Key.txt", script_key)
+			writefile("Pathos/Keys/" .. KeyName, script_key)
 			closeUI()
 			API.load_script()
 		elseif status.code:find("KEY_") then
