@@ -799,13 +799,14 @@ PopupBackground.MouseButton1Click:Connect(function()
 end)
 
 LootlabsButton.MouseButton1Click:Connect(function()
-	if setclipboard then
+	createNotification("Disabled for now!", "info", 3)
+	--[[if setclipboard then
 		createNotification("Linkvertise link copied to clipboard!", "info", 3)
-		setclipboard("https://ads.luarmor.net/get_key?for=Pathos_Free_Key-vhIOirmPRogC")
+		--setclipboard("https://ads.luarmor.net/get_key?for=Pathos_Free_Key-vhIOirmPRogC")
 	else
 		createNotification("Could not set clipboard! copy from textbox", "info", 3)
 		KeyTextBox.Text = "https://shorturl.at/rjtzR"
-	end
+	end]]--
 
 	closePopup()
 end)
@@ -813,10 +814,10 @@ end)
 LinkvertiseButton.MouseButton1Click:Connect(function()
 	if setclipboard then
 		createNotification("Linkvertise link copied to clipboard!", "info", 3)
-		setclipboard("https://ads.luarmor.net/get_key?for=Pathos_FIAS_Linkvertise-KErBHATWSWgw")
+		setclipboard("https://ads.luarmor.net/get_key?for=Pathos_FIAS_Linkvertise-aietlPpLMrMu")
 	else
 		createNotification("Could not set clipboard! copy from textbox", "info", 3)
-		KeyTextBox.Text = "https://shorturl.at/aPcwd"
+		KeyTextBox.Text = "https://shorturl.at/QXKeF"
 	end
 	closePopup()
 end)
